@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:src="@drawable/propeller" />
+
+    <TextView
+        android:id="@+id/text_connection_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="227dp"
+        android:drawableLeft="@mipmap/connect"
+        android:gravity="center"
+        android:text="No Product Connected"
+        android:textColor="#ecc8c8"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_product_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="189dp"
+        android:gravity="center"
+        android:text="@string/product_information"
+        android:textColor="#ecc8c8"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <!--
+    <TextView
+        android:id="@+id/text_model_available"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="226dp"
+        android:gravity="center"
+        android:text="@string/model_not_available"
+        android:textSize="15dp" />
+    -->
+    <Button
+        android:id="@+id/btn_open"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="103dp"
+        android:background="@drawable/round_btn"
+        android:text="Start Flying"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        tools:background="#FCBCB8" />
+
+    <Button
+        android:id="@+id/btn_wikitude"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="224dp"
+        android:background="@drawable/round_btn"
+        android:text="wikitude"
+        android:textColor="@color/colorWhite"
+        android:textSize="20dp"
+        tools:background="#FCBCB8" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Connect to Drone"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ecc8c8"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+
+        <Button
+            android:id="@+id/btn_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/facebook"
+            android:layout_weight="1"
+            android:background="@drawable/gradient"
+            android:focusable="false"
+            android:text="Share"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/btn_rent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/spark"
+            android:layout_weight="1"
+            android:background="@drawable/gradient"
+            android:focusable="false"
+            android:text="Rent"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"/>
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

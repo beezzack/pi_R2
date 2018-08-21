@@ -1,0 +1,103 @@
+apply plugin: 'com.android.library'
+
+/* To rebuild the plugins this has to be set to true. Otherwise the prebuilt plugins library will be used.
+ * This is only for the purpose of providing the Example App without the requirement of installing the Android NDK.
+ */
+def rebuildPlugins = true
+
+/* Defines the temporary path for the plugins shared library.*/
+def wikitudeTmpPath = "${buildDir}/wikitude/libs"
+
+android {
+    compileSdkVersion 27
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_TOOLCHAIN=clang",
+                        "-DANDROID_STL=c++_shared",
+                        /* Provides the path to that the built plugins library should be copied to to CMake */
+                        "-DPLUGIN_OUTPUT_PATH=${wikitudeTmpPath}"
+
+                cppFlags "-std=c++14 -Wno-inconsistent-missing-override"
+            }
+        }
+    }
+
+    flavorDimensions "arch"
+
+    /* Defines the product flavor to only build for one or all architectures.
+     * The Wikitude SDK supports armeabi-v7a, arm64-v8a and x86.
+     */
+    productFlavors {
+        arm7 {
+            dimension "arch"
+            externalNativeBuild {
+                cmake {
+                    abiFilters 'armeabi-v7a'
+                }
+            }
+        }
+        arm8 {
+            dimension "arch"
+            externalNativeBuild {
+                cmake {
+                    abiFilters 'arm64-v8a'
+                }
+            }
+        }
+        x86 {
+            dimension "arch"
+            externalNativeBuild {
+                cmake {
+                    abiFilters 'x86'
+                }
+            }
+        }
+        allarchs {
+            dimension "arch"
+            externalNativeBuild {
+                cmake {
+                    abiFilters 'x86', 'armeabi-v7a', 'arm64-v8a'
+                }
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/cpp/lib']
+            /* If the plugins are not rebuilt use the pre-built library that is located in the jniLibs folder. */
+            if (!rebuildPlugins) {
+                jniLibs.srcDirs += ['src/main/jniLibs']
+            }
+        }
+    }
+
+    if (rebuildPlugins) {
+        externalNativeBuild {
+            cmake {
+                path "src/main/cpp/CMakeLists.txt"
+            }
+        }
+    }
+
+}
+
+tasks.whenTaskAdded {
+    task ->
+        if (task.name.contains("external") && !task.name.contains("Clean")) {
+            /* Once the native build is done the plugin library is copied to jniLibs to be available
+             * when the plugins should not be rebuilt.
+             */
+            task.doLast {
+                copy {
+                    from wikitudeTmpPath
+                    into 'src/main/jniLibs'
+                }
+            }
+        }
+}
