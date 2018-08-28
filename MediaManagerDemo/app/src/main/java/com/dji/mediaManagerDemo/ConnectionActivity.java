@@ -47,7 +47,6 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
     //private TextView mVersionTv;
 
     private Button mBtnOpen;
-    private Button mBtnWikitude;
     private Button mBtnFacebook;
     private Button mBtnRent;
     private static final String[] REQUIRED_PERMISSION_LIST = new String[]{
@@ -201,10 +200,7 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
 
         mBtnOpen = (Button) findViewById(R.id.btn_open);
         mBtnOpen.setOnClickListener(this);
-        mBtnOpen.setEnabled(false);
-        mBtnWikitude = (Button) findViewById(R.id.btn_wikitude);
-        mBtnWikitude.setOnClickListener(this);
-        mBtnWikitude.setEnabled(true);
+        mBtnOpen.setEnabled(true);
         mBtnFacebook = (Button) findViewById(R.id.btn_facebook);
         mBtnFacebook.setOnClickListener(this);
         mBtnFacebook.setEnabled(false);
@@ -285,11 +281,6 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
             }
             case R.id.btn_rent: {
                 Intent intent = new Intent(this, DefaultLayoutActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.btn_wikitude: {
-                Intent intent = new Intent(this, WikitudeMainActivity.class);
                 startActivity(intent);
                 break;
             }

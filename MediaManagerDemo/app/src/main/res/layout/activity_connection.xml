@@ -66,18 +66,6 @@
         android:textSize="20dp"
         tools:background="#FCBCB8" />
 
-    <Button
-        android:id="@+id/btn_wikitude"
-        android:layout_width="150dp"
-        android:layout_height="55dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="224dp"
-        android:background="@drawable/round_btn"
-        android:text="wikitude"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        tools:background="#FCBCB8" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

@@ -111,7 +111,7 @@ void main()\
     \
     mediump float distanceToScanline = fallbackClamp(0.0, sspScanWindowHeight, distance(sspScanlineY, sspFragmentCenterY)) / sspScanWindowHeight;\
     \
-    gl_FragColor = vec4(mix(mix(vec3(c), vec3(1.0, 0.549, 0.0392), step(0.27, sobel)), cameraFrameColor.rgb, smoothstep(0.3, 0.7, distanceToScanline)), 1.0);\
+    gl_FragColor = vec4(mix(mix(vec3(c), vec3(1.0, 0.549, 0.0392), step(0.27, sobel)), cameraFrameColor.rgb, smoothstep(0.3, 0.7, 0.0)), 1.0);\
 }";
 
 const std::string fullscreenTextureFragmentShader = "\
@@ -603,7 +603,7 @@ void YUVFrameInputPlugin::render() {
             wikitude::sdk::Matrix4 projection = targetToDraw.getProjectionMatrix();
 
             wikitude::sdk::Matrix4 scaleMatrix;
-            scaleMatrix.scale(targetToDraw.getTargetScale().x, targetToDraw.getTargetScale().y, 1.0);
+            scaleMatrix.scale(0.0, 0.0, 0.0);
 
             wikitude::sdk::Matrix4 sensorRotationCompensation;
 

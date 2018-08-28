@@ -69,8 +69,9 @@ public class ArchitectViewExtensionActivity extends WikitudeArActivity {
                     DJIVideoStreamDecoder.getInstance().init(this.getApplicationContext(), null);
                     DJIVideoStreamDecoder.getInstance().setYuvDataListener(cusCamera);
                     DJIVideoStreamDecoder.getInstance().resume();
-
+                    extensions.put(EXTENSION_GEO, new GeoExtension(this, architectView));
                     extensions.put(EXTENSION_CUSTOM_CAMERA, cusCamera);
+
                     break;
                 case EXTENSION_SIMPLE_INPUT:
                     extensions.put(EXTENSION_SIMPLE_INPUT, new SimpleInputPluginExtension(this, architectView));

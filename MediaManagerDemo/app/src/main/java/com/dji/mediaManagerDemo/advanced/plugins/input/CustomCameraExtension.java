@@ -121,13 +121,13 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
     public void onYuvDataReceived(final ByteBuffer yuvFrame, int dataSize, final int width, final int height) {
         //In this demo, we test the YUV data by saving it into JPG files.
         //DJILog.d(TAG, "onYuvDataReceived " + dataSize);
-        if (count++ % 30 == 0 && yuvFrame != null) {
-            final byte[] bytes = new byte[dataSize];
-            yuvFrame.get(bytes);
+
+        final byte[] bytes = new byte[dataSize];
+        yuvFrame.get(bytes);
 //            DJILog.d(TAG, "onYuvDataReceived2 " + dataSize);
-            Log.d(TAG,"datasize:" + dataSize + "\nwidth:" + width + "\nheight:" + height );
-            saveYuvDataToJPEG(bytes, width, height);
-        }
+        Log.d(TAG,"datasize:" + dataSize + "\nwidth:" + width + "\nheight:" + height );
+        saveYuvDataToJPEG(bytes, width, height);
+
     }
     private void saveYuvDataToJPEG(byte[] yuvFrame, int width, int height){
         if (yuvFrame.length < width * height) {
