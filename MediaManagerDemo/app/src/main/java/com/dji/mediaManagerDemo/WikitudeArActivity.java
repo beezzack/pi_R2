@@ -92,6 +92,11 @@ public class WikitudeArActivity extends AppCompatActivity {
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     private static final int REQUEST_PERMISSION_KEY = 1;
     boolean isRecording = false;
+    private String[] PERMISSIONS = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO
+    };
 
     private File videoFile;
 
@@ -156,14 +161,10 @@ public class WikitudeArActivity extends AppCompatActivity {
         this.architectView = (ArchitectView)findViewById( R.id.architectView );
         architectView.onCreate(config); // create ArchitectView with configuration
         //record
-        String[] PERMISSIONS = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.RECORD_AUDIO
-        };
         if (!RecordHelpFunction.hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_KEY);
         }
+
 
 
         DisplayMetrics metrics = new DisplayMetrics();
