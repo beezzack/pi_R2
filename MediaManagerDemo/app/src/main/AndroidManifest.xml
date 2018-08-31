@@ -22,6 +22,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
@@ -68,7 +69,6 @@
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -77,11 +77,9 @@
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
             </intent-filter>
-
             <meta-data
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
@@ -93,21 +91,8 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape" />
-        <activity
-            android:name="com.dji.mediaManagerDemo.advanced.SamplePoiDetailActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name="com.dji.mediaManagerDemo.fragments.UrlLauncherActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name="com.dji.mediaManagerDemo.advanced.ArchitectViewExtensionActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
-            android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherSettingsActivity"
-            android:noHistory="true" />
-        <activity android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherStorageActivity" />
         <!--Wikitude SDK-->
-        <activity android:name=".WikitudeMainActivity">
+        <activity android:name="com.dji.mediaManagerDemo.WikitudeMainActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -121,9 +106,22 @@
         <activity
             android:name="com.dji.mediaManagerDemo.WikitudeGeoArActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.dji.mediaManagerDemo.advanced.SamplePoiDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.dji.mediaManagerDemo.fragments.UrlLauncherActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.dji.mediaManagerDemo.advanced.ArchitectViewExtensionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherSettingsActivity"
+            android:noHistory="true" />
+        <activity android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherStorageActivity" />
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.wikitude.sdksamples.provider"
+            android:authorities="com.dji.mediaManagerDemo.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

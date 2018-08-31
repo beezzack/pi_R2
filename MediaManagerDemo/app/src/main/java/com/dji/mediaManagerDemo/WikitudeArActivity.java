@@ -7,11 +7,13 @@ import com.dji.mediaManagerDemo.util.SampleData;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.CamcorderProfile;
@@ -34,7 +36,6 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -100,6 +101,7 @@ public class WikitudeArActivity extends AppCompatActivity {
 
     private File videoFile;
 
+
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
         ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -111,6 +113,8 @@ public class WikitudeArActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
 
         // Used to enabled remote debugging of the ArExperience with google chrome https://developers.google.com/web/tools/chrome-devtools/remote-debugging
         WebView.setWebContentsDebuggingEnabled(true);
@@ -189,7 +193,6 @@ public class WikitudeArActivity extends AppCompatActivity {
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 captureScreenshot();
                 Toast toast = Toast.makeText(WikitudeArActivity.this,
                         "拍照成功", Toast.LENGTH_SHORT);
@@ -412,19 +415,10 @@ public class WikitudeArActivity extends AppCompatActivity {
             String mPath = Environment.getExternalStorageDirectory().toString() + "/MediaManagerDemo/ARPicture" + getCurSysDate() + ".jpg";
 
             // create bitmap screen capture
-            View view = getWindow().getDecorView().getRootView();
-            view.setDrawingCacheEnabled(true);
-
-            Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
-            view.setDrawingCacheEnabled(false);
-
             File imageFile = new File(mPath);
-            FileOutputStream outputStream = new FileOutputStream(imageFile);
 
-            int quality = 100;
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
-            outputStream.flush();
-            outputStream.close();
+            savePic(takeScreenShot(this), mPath);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 Intent mediaScanIntent = new Intent(
                         Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -493,6 +487,38 @@ public class WikitudeArActivity extends AppCompatActivity {
                     }).show();
         } else {
             finish();
+        }
+    }
+    public static Bitmap takeScreenShot(Activity activity) {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap b1 = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
+        //Find the screen dimensions to create bitmap in the same size.
+        DisplayMetrics dm = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int height = dm.heightPixels;
+        int width = dm.widthPixels + 40;
+
+
+        Bitmap b = Bitmap.createBitmap(b1, 0, statusBarHeight, width, height - statusBarHeight);
+        view.destroyDrawingCache();
+        return b;
+    }
+
+    public static void savePic(Bitmap b, String strFileName) {
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(strFileName);
+            b.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

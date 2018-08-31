@@ -1,15 +1,13 @@
 package com.dji.mediaManagerDemo.advanced.plugins.input;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 
+import com.dji.mediaManagerDemo.DemoApplication;
 import com.dji.mediaManagerDemo.R;
-import com.dji.mediaManagerDemo.VideoDecodingApplication;
 import com.dji.mediaManagerDemo.media.DJIVideoStreamDecoder;
-import com.dji.mediaManagerDemo.media.NativeHelper;
 import com.wikitude.architect.ArchitectView;
 import com.wikitude.common.plugins.PluginManager;
 import com.dji.mediaManagerDemo.advanced.ArchitectViewExtension;
@@ -41,8 +39,6 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
     private int width = 1024;
     private int height = 768;
     private double FOV = 81.9;
-    private boolean flag = false;
-    Context context;
 
     public CustomCameraExtension(Activity activity, ArchitectView architectView) {
         super(activity, architectView);
@@ -124,7 +120,7 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
 
         final byte[] bytes = new byte[dataSize];
         yuvFrame.get(bytes);
-//            DJILog.d(TAG, "onYuvDataReceived2 " + dataSize);
+        //DJILog.d(TAG, "onYuvDataReceived2 " + dataSize);
         Log.d(TAG,"datasize:" + dataSize + "\nwidth:" + width + "\nheight:" + height );
         saveYuvDataToJPEG(bytes, width, height);
 
@@ -146,24 +142,6 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
             v[i] = yuvFrame[y.length + u.length + i];
             u[i] = yuvFrame[y.length + i];
         }
-//        int uvWidth = width / 2;
-//        int uvHeight = height / 2;
-//        for (int j = 0; j < uvWidth / 2; j++) {
-//            for (int i = 0; i < uvHeight / 2; i++) {
-//                byte uSample1 = u[i * uvWidth + j];
-//                byte uSample2 = u[i * uvWidth + j + uvWidth / 2];
-//                byte vSample1 = v[(i + uvHeight / 2) * uvWidth + j];
-//                byte vSample2 = v[(i + uvHeight / 2) * uvWidth + j + uvWidth / 2];
-//                nu[2 * (i * uvWidth + j)] = uSample1;
-//                nu[2 * (i * uvWidth + j) + 1] = uSample1;
-//                nu[2 * (i * uvWidth + j) + uvWidth] = uSample2;
-//                nu[2 * (i * uvWidth + j) + 1 + uvWidth] = uSample2;
-//                nv[2 * (i * uvWidth + j)] = vSample1;
-//                nv[2 * (i * uvWidth + j) + 1] = vSample1;
-//                nv[2 * (i * uvWidth + j) + uvWidth] = vSample2;
-//                nv[2 * (i * uvWidth + j) + 1 + uvWidth] = vSample2;
-//            }
-//        }
         //nv21test
         byte[] bytes = new byte[yuvFrame.length];
         System.arraycopy(y, 0, bytes, 0, y.length);
@@ -177,15 +155,23 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
                         + bytes.length);
         notifyNewCameraFrameN21(bytes);
     }
-
+    private long lastupdate;
     private void notifyStatusChange() {
-        Log.d(TAG, "notifyStatusChange ");
-        final BaseProduct product = VideoDecodingApplication.getProductInstance();
+        final BaseProduct product = DemoApplication.getProductInstance();
+        Log.d(TAG, "notifyStatusChange: " + (product == null ? "Disconnect" : (product.getModel() == null ? "null model" : product.getModel().name())));
+        if (product != null && product.isConnected() && product.getModel() != null) {
+            Log.d(TAG,product.getModel().name() + " Connected ");
+        } else {
+            Log.d(TAG,"Disconnected");
+        }
         // The callback for receiving the raw H264 video data for camera live view
         mReceivedVideoDataCallBack = new VideoFeeder.VideoDataCallback() {
             @Override
             public void onReceive(byte[] videoBuffer, int size) {
-                Log.d(TAG, "camera recv video data size: " + size);
+                if (System.currentTimeMillis() - lastupdate > 1000) {
+                    Log.d(TAG, "camera recv video data size: " + size);
+                    lastupdate = System.currentTimeMillis();
+                }
                 DJIVideoStreamDecoder.getInstance().parse(videoBuffer, size);
             }
         };

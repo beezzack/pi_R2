@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.hardware.usb.UsbManager;
 
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
@@ -364,5 +365,14 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
         }
         hasStartedFirmVersionListener = false;
     }
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String action = intent.getAction();
+        if (UsbManager.ACTION_USB_ACCESSORY_ATTACHED.equals(action)) {
+            Intent attachedIntent = new Intent();
+            attachedIntent.setAction(DJISDKManager.USB_ACCESSORY_ATTACHED);
+            sendBroadcast(attachedIntent);
+        }
+    }
 }

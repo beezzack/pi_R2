@@ -111,7 +111,7 @@ void main()\
     \
     mediump float distanceToScanline = fallbackClamp(0.0, sspScanWindowHeight, distance(sspScanlineY, sspFragmentCenterY)) / sspScanWindowHeight;\
     \
-    gl_FragColor = vec4(mix(mix(vec3(c), vec3(1.0, 0.549, 0.0392), step(0.27, sobel)), cameraFrameColor.rgb, smoothstep(0.3, 0.7, 0.0)), 1.0);\
+    gl_FragColor = vec4(mix(mix(vec3(c), vec3(1.0, 0.549, 0.0392), step(0.27, sobel)), cameraFrameColor.rgb, smoothstep(0.3, 0.7, 1.0)), 1.0);\
 }";
 
 const std::string fullscreenTextureFragmentShader = "\
