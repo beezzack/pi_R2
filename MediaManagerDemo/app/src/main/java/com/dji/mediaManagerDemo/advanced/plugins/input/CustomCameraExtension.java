@@ -155,7 +155,7 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
                         + bytes.length);
         notifyNewCameraFrameN21(bytes);
     }
-    private long lastupdate;
+
     private void notifyStatusChange() {
         final BaseProduct product = DemoApplication.getProductInstance();
         Log.d(TAG, "notifyStatusChange: " + (product == null ? "Disconnect" : (product.getModel() == null ? "null model" : product.getModel().name())));
@@ -168,10 +168,7 @@ public class CustomCameraExtension extends ArchitectViewExtension implements DJI
         mReceivedVideoDataCallBack = new VideoFeeder.VideoDataCallback() {
             @Override
             public void onReceive(byte[] videoBuffer, int size) {
-                if (System.currentTimeMillis() - lastupdate > 1000) {
-                    Log.d(TAG, "camera recv video data size: " + size);
-                    lastupdate = System.currentTimeMillis();
-                }
+                Log.d(TAG, "camera recv video data size: " + size);
                 DJIVideoStreamDecoder.getInstance().parse(videoBuffer, size);
             }
         };
