@@ -27,7 +27,6 @@
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
         android:name="android.hardware.usb.host"
@@ -129,7 +128,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUp" />
         <activity android:name=".SignIn" />
-        <activity android:name=".Teach"></activity>
+        <activity android:name=".Teach"  />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.dji.mediaManagerDemo.provider"

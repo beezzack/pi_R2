@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "32546667842",
+    "firebase_url": "https://droneappproject.firebaseio.com",
+    "project_id": "droneappproject",
+    "storage_bucket": "droneappproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32546667842:android:44d6a8afe19a7e8e",
+        "android_client_info": {
+          "package_name": "com.dji.mediaManagerDemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32546667842-mq95qgjt8okkh6ibi8fu6pn291hq576k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dji.mediaManagerDemo",
+            "certificate_hash": "596148b489d3af1c9c52a9d46aaebe5d0f4d4bab"
+          }
+        },
+        {
+          "client_id": "32546667842-sl1pfghtnt3i02g00j3o7aa29qi63v25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRC8pMkemPBUJHfxarBYzCBjJH9-pVs-A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32546667842-sl1pfghtnt3i02g00j3o7aa29qi63v25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

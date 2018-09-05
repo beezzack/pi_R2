@@ -1,6 +1,8 @@
 package com.dji.mediaManagerDemo.Model;
 
 
+import android.support.annotation.NonNull;
+
 public class User {
 
     private String Name;
@@ -9,7 +11,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(@NonNull String name,@NonNull String password) {
         Name = name;
         Password = password;
     }

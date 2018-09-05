@@ -212,7 +212,7 @@ public class WikitudeArActivity extends AppCompatActivity {
 
     public void actionBtnReload() {
         if (isRecording) {
-            btn_record.setBackgroundResource(R.drawable.pause);
+            btn_record.setBackgroundResource(R.drawable.end);
         } else {
             btn_record.setBackgroundResource(R.drawable.recording);
         }
