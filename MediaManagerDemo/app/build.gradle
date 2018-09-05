@@ -64,6 +64,8 @@ android {
 }
 
 dependencies {
+
+    implementation('com.github.jd-alexander:android-flat-button:v1.1')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -81,6 +83,7 @@ dependencies {
     implementation project(':plugins')
 
     testImplementation 'junit:junit:4.12'
+    implementation 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
 
     implementation "com.android.support:appcompat-v7:$commonSupportLibVersion"
     implementation "com.android.support:design:$commonSupportLibVersion"
@@ -88,6 +91,13 @@ dependencies {
 
     implementation 'com.dji:dji-uxsdk:4.5.1'
     compileOnly('com.dji:dji-sdk-provided:4.5.1')
+    implementation "com.google.android.gms:play-services-base:15.0.1"
+    implementation "com.google.android.gms:play-services-maps:15.0.1"
+    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation('com.rengwuxian.materialedittext:library:2.1.4') {
+        exclude group: 'com.nineoldandroids', module: 'library'
+    }
 
 }
 repositories {
@@ -95,5 +105,15 @@ repositories {
         dirs 'libs'
     }
 }
-
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
+        }
+    }
+}
+apply plugin: 'com.google.gms.google-services'
 

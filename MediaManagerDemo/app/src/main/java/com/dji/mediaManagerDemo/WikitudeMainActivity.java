@@ -71,12 +71,12 @@ public class WikitudeMainActivity extends AppCompatActivity implements Expandabl
 
         final SamplesExpendableListAdapter adapter = new SamplesExpendableListAdapter(this, categories);
 
-        listView = findViewById(R.id.listView);
+        listView = (ExpandableListView) findViewById(R.id.listView);
         moveExpandableIndicatorToRight();
         listView.setOnChildClickListener(this);
         listView.setAdapter(adapter);
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 

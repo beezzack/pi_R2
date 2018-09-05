@@ -52,7 +52,7 @@ public class UrlLauncherStorageActivity extends AppCompatActivity implements Ada
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_url_launcher_storage);
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.url_launcher_title);
         setSupportActionBar(toolbar);
     }
@@ -80,7 +80,7 @@ public class UrlLauncherStorageActivity extends AppCompatActivity implements Ada
             }
         }
 
-        final ListView listView = findViewById(R.id.url_list_storage_view);
+        final ListView listView = (ListView) findViewById(R.id.url_list_storage_view);
         listView.setOnItemClickListener(this);
         adapter = new UrlLauncherStorageListAdapter(this, sampleCategory);
         listView.setAdapter(adapter);

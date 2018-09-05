@@ -59,16 +59,16 @@ public class UrlLauncherSettingsActivity extends AppCompatActivity {
         history = preferences.getStringSet(AUTOCOMPLETE_PREFS_HISTORY, new HashSet<String>());
         updateAutocompleteSource();
 
-        urlText = findViewById(R.id.url_launcher_url_text);
-        nameText = findViewById(R.id.url_launcher_name_edit_text);
-        geoSwitch = findViewById(R.id.url_launcher_geo_switch);
-        imageSwitch = findViewById(R.id.url_launcher_image_switch);
-        instantSwitch = findViewById(R.id.url_launcher_instant_switch);
-        objectSwitch = findViewById(R.id.url_launcher_object_switch);
-        camera2Switch = findViewById(R.id.url_launcher_camera2_switch);
-        focusSpinner = findViewById(R.id.url_launcher_focus_spinner);
-        positionSpinner = findViewById(R.id.url_launcher_position_spinner);
-        resolutionSpinner = findViewById(R.id.url_launcher_resolution_spinner);
+        urlText = (AutoCompleteTextView) findViewById(R.id.url_launcher_url_text);
+        nameText = (EditText) findViewById(R.id.url_launcher_name_edit_text);
+        geoSwitch = (Switch) findViewById(R.id.url_launcher_geo_switch);
+        imageSwitch = (Switch) findViewById(R.id.url_launcher_image_switch);
+        instantSwitch = (Switch) findViewById(R.id.url_launcher_instant_switch);
+        objectSwitch = (Switch) findViewById(R.id.url_launcher_object_switch);
+        camera2Switch = (Switch) findViewById(R.id.url_launcher_camera2_switch);
+        focusSpinner = (Spinner) findViewById(R.id.url_launcher_focus_spinner);
+        positionSpinner = (Spinner) findViewById(R.id.url_launcher_position_spinner);
+        resolutionSpinner = (Spinner) findViewById(R.id.url_launcher_resolution_spinner);
 
         final Intent intent = getIntent();
         editPosition = intent.getIntExtra(UrlLauncherStorageActivity.URL_LAUNCHER_EDIT_SAMPLE_ID, -1);
@@ -129,7 +129,7 @@ public class UrlLauncherSettingsActivity extends AppCompatActivity {
             }
         });
 
-        final Button ok = findViewById(R.id.url_launcher_ok_button);
+        final Button ok = (Button) findViewById(R.id.url_launcher_ok_button);
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +208,7 @@ public class UrlLauncherSettingsActivity extends AppCompatActivity {
     }
 
     private void updateAutocompleteSource() {
-        final AutoCompleteTextView urlText = findViewById(R.id.url_launcher_url_text);
+        final AutoCompleteTextView urlText = (AutoCompleteTextView) findViewById(R.id.url_launcher_url_text);
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, history.toArray(new String[history.size()]));
         urlText.setAdapter(adapter);
     }

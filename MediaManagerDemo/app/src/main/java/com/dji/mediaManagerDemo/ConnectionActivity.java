@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -44,11 +45,9 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
 
     private TextView mTextConnectionStatus;
     private TextView mTextProduct;
-    //private TextView mTextModelAvailable;
-    //private TextView mVersionTv;
 
     private Button mBtnOpen;
-    private Button mBtnFacebook;
+    private Button mBtnShare;
     private Button mBtnRent;
     private static final String[] REQUIRED_PERMISSION_LIST = new String[]{
         Manifest.permission.VIBRATE,
@@ -195,24 +194,14 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
     private void initUI() {
 
         mTextConnectionStatus = (TextView) findViewById(R.id.text_connection_status);
-        //mTextModelAvailable = (TextView) findViewById(R.id.text_model_available);
         mTextProduct = (TextView) findViewById(R.id.text_product_info);
-
-        //mVersionTv = (TextView) findViewById(R.id.textView2);
-        //.setText(getResources().getString(R.string.sdk_version, DJISDKManager.getInstance().getSDKVersion()));
 
         mBtnOpen = (Button) findViewById(R.id.btn_open);
         mBtnOpen.setOnClickListener(this);
-        mBtnOpen.setEnabled(true);
-        mBtnFacebook = (Button) findViewById(R.id.btn_facebook);
-        mBtnFacebook.setOnClickListener(this);
-        mBtnFacebook.setEnabled(false);
+        mBtnShare= (Button) findViewById(R.id.btn_share);
+        mBtnShare.setOnClickListener(this);
         mBtnRent = (Button) findViewById(R.id.btn_rent);
         mBtnRent.setOnClickListener(this);
-        mBtnRent.setEnabled(false);
-
-
-
     }
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -236,7 +225,7 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
                     Aircraft aircraft = (Aircraft)product;
                     if(aircraft.getRemoteController() != null && aircraft.getRemoteController().isConnected()) {
                         // The product is not connected, but the remote controller is connected
-                        showToast("only RC Connected");
+                        showToast("only Remote Controller Connected");
                         ret = true;
                     }
                 }
@@ -277,13 +266,15 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
                 startActivity(intent);
                 break;
             }
-            case R.id.btn_facebook: {
-                Intent intent = new Intent(this, DefaultLayoutActivity.class);
-                startActivity(intent);
+            case R.id.btn_share: {
+                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                myIntent.setType("text/plain");
+
+                startActivity(Intent.createChooser(myIntent, "Share using"));
                 break;
             }
             case R.id.btn_rent: {
-                Intent intent = new Intent(this, DefaultLayoutActivity.class);
+                Intent intent = new Intent(this, MapsActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -300,7 +291,10 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
             mBtnOpen.setEnabled(true);
 
             String str = mProduct instanceof Aircraft ? "DJIAircraft" : "DJIHandHeld";
-            mTextConnectionStatus.setText("Status: " + str + " connected");
+            mTextConnectionStatus.setText( str + " connected");
+            Drawable WifiImage = getResources().getDrawable(R.drawable.ic_wifi_24dp);
+            WifiImage.setBounds(1, 1, 100, 100);
+            mTextConnectionStatus.setCompoundDrawables(WifiImage,null,null,null);
             tryUpdateFirmwareVersionWithListener();
 
             if (null != mProduct.getModel()) {
@@ -309,31 +303,16 @@ public class ConnectionActivity extends Activity implements View.OnClickListener
                 mTextProduct.setText(R.string.product_information);
             }
 
-            loginAccount();
-
         } else {
             Log.v(TAG, "refreshSDK: False");
             mBtnOpen.setEnabled(false);
 
             mTextProduct.setText(R.string.product_information);
             mTextConnectionStatus.setText(R.string.connection_loose);
+            Drawable NoWifiImage = getResources().getDrawable(R.drawable.ic_signal_wifi_off_24dp);
+            NoWifiImage.setBounds(1, 1, 100, 100);
+            mTextConnectionStatus.setCompoundDrawables(NoWifiImage,null,null,null);
         }
-    }
-
-    private void loginAccount(){
-        UserAccountManager.getInstance().logIntoDJIUserAccount(this,
-                new CommonCallbacks.CompletionCallbackWith<UserAccountState>() {
-                    @Override
-                    public void onSuccess(final UserAccountState userAccountState) {
-                        Log.e(TAG, "Login Success");
-                        showToast("Login Success!");
-                    }
-                    @Override
-                    public void onFailure(DJIError error) {
-                        showToast("Login Error:"
-                                + error.getDescription());
-                    }
-                });
     }
 
     private void tryUpdateFirmwareVersionWithListener() {

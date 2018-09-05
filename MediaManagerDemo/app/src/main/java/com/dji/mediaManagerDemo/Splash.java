@@ -1,5 +1,6 @@
 package com.dji.mediaManagerDemo;
 
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -18,10 +19,11 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         tv= (TextView) findViewById(R.id.tv);
         iv=(ImageView) findViewById(R.id.iv);
+
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.transition);
         tv.startAnimation(myanim);
         iv.startAnimation(myanim);
-        final Intent Intent = new Intent(this,ConnectionActivity.class);
+        final Intent Intent = new Intent(this,LoginActivity.class);
         Thread timer = new Thread(){
             public void run (){
                 try {

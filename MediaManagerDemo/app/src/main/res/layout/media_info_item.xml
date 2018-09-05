@@ -52,6 +52,5 @@
         android:clickable="false"
         android:text="FileTime" />
 
-
 </RelativeLayout>
 

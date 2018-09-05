@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.dji:dji-uxsdk-4.5.1">
     <CLASSES>
-      <root url="jar://D:/Users/YangShengLi/.gradle/caches/transforms-1/files-1.1/dji-uxsdk-4.5.1.aar/5191117f3531ad5729185090e513d558/jars/classes.jar!/" />
-      <root url="file://D:/Users/YangShengLi/.gradle/caches/transforms-1/files-1.1/dji-uxsdk-4.5.1.aar/5191117f3531ad5729185090e513d558/res" />
+      <root url="file://D:/Users/YangShengLi/.gradle/caches/transforms-1/files-1.1/dji-uxsdk-4.5.1.aar/6a6384d92e9853f50215fee2f96736db/res" />
+      <root url="jar://D:/Users/YangShengLi/.gradle/caches/transforms-1/files-1.1/dji-uxsdk-4.5.1.aar/6a6384d92e9853f50215fee2f96736db/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

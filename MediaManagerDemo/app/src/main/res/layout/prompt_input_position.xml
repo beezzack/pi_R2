@@ -20,7 +20,6 @@
         android:inputType="number">
 
         <requestFocus />
-
     </EditText>
 
 </LinearLayout>

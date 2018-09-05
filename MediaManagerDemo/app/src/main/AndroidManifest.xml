@@ -22,8 +22,12 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
         android:name="android.hardware.usb.host"
@@ -65,10 +69,16 @@
             android:name="com.dji.sdk.API_KEY"
             android:value="62cbaff9b5a4ba5fb3eb0d00" />
 
+        <!-- Maps SDK -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <!-- DJI SDK -->
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -80,10 +90,12 @@
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
         </activity>
+        <activity android:name=".MapsActivity" />
         <activity
             android:name=".DefaultLayoutActivity"
             android:configChanges="orientation"
@@ -93,11 +105,6 @@
             android:screenOrientation="landscape" />
         <!--Wikitude SDK-->
         <activity android:name="com.dji.mediaManagerDemo.WikitudeMainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         </activity>
         <activity
             android:name="com.dji.mediaManagerDemo.WikitudeArActivity"
@@ -119,6 +126,10 @@
             android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherSettingsActivity"
             android:noHistory="true" />
         <activity android:name="com.dji.mediaManagerDemo.util.urllauncher.UrlLauncherStorageActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".SignIn" />
+        <activity android:name=".Teach"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.dji.mediaManagerDemo.provider"
