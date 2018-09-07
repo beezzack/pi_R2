@@ -364,7 +364,6 @@ public class WikitudeArActivity extends AppCompatActivity {
                                 }
                             }).show();
                 }
-                return;
             }
         }
     }

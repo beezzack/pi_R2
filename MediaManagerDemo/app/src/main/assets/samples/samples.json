@@ -1,13 +1,13 @@
 [
     {
-        "category_name": "droneAR",
+        "category_name": "AR Mode",
         "samples": [
             {
                 "required_extensions": [
-                    "qr_code"
+                    "custom_camera"
                 ],
-                "name": "QR & Barcode",
-                "path": "13_PluginsAPI_1_QR&Barcode/index.html",
+                "name": "introduction video",
+                "path": "introduction_video/index.html",
                 "requiredFeatures": [
                     "image_tracking"
                 ],
