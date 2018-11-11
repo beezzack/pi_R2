@@ -107,6 +107,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .position(sydney)
                 .title("西子灣站").snippet("可借數量：1")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+
+        LatLng ThePier2 = new LatLng(22.621720, 120.276169);
+        mMap.addMarker(new MarkerOptions()
+                .position(ThePier2)
+                .title("駁二站").snippet("可借數量：1")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
     }
 
 }
