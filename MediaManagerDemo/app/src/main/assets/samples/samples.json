@@ -6,8 +6,47 @@
                 "required_extensions": [
                     "custom_camera"
                 ],
-                "name": "影片介紹",
+                "name": "介紹影片",
                 "path": "introduction_video/index.html",
+                "requiredFeatures": [
+                    "image_tracking"
+                ],
+                "startupConfiguration": {
+                    "camera_position": "back"
+                }
+            },
+            {
+                "required_extensions": [
+                    "custom_camera"
+                ],
+                "name": "景物介紹",
+                "path": "around/index.html",
+                "requiredFeatures": [
+                    "image_tracking"
+                ],
+                "startupConfiguration": {
+                    "camera_position": "back"
+                }
+            },
+            {
+                "required_extensions": [
+                    "custom_camera"
+                ],
+                "name": "特色拍照",
+                "path": "takephoto/index.html",
+                "requiredFeatures": [
+                    "image_tracking"
+                ],
+                "startupConfiguration": {
+                    "camera_position": "back"
+                }
+            },
+            {
+                "required_extensions": [
+                    "custom_camera"
+                ],
+                "name": "時光迴廊",
+                "path": "photo1/index.html",
                 "requiredFeatures": [
                     "image_tracking"
                 ],

@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.dji.mediaManagerDemo"
-        minSdkVersion 25
+        minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -98,6 +98,8 @@ dependencies {
     implementation('com.rengwuxian.materialedittext:library:2.1.4') {
         exclude group: 'com.nineoldandroids', module: 'library'
     }
+    implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.android.gms:play-services-ads:17.0.0'
 
 }
 repositories {
@@ -116,4 +118,6 @@ configurations.all {
     }
 }
 apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+
 

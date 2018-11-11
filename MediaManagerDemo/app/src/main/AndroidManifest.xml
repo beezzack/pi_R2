@@ -139,6 +139,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
         <meta-data android:name="com.google.ar.core" android:value="optional" />
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
     </application>
 
 </manifest>
